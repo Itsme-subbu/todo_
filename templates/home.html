@@ -30,12 +30,12 @@
                 <!-- List of all the tasks for the day -->
                  {% for task in tasks %}
                     <div class="card m-1">
-                        <div class="card-body">
+                        <div class="card-body" name="cardtask">
                             {{ task }}
                             <span style="position: relative; float: right;">
-                                <a class="btn btn-success"><i class="fa fa-check"></i> Mark as Done</a>
-                                <a class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                <a class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                                <a href="{% url 'marktask' task.pk %}" class="btn btn-success"><i class="fa fa-check"></i> Mark as Done</a>
+                                <a href="{% url 'deltask' task.pk %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                <a href="{% url 'edittask' task.pk %}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                             
                             </span>
                         </div>
@@ -48,9 +48,12 @@
                 <!-- List of all the tasks that have completed -->
                 {% for task in incompleteTask %} 
                 <div class="card m-1">
-                    <div class="card-body">
+                    <div class="card-body ">
                         {{ task }}
+                       <span style="position: relative; float: right;">
+                            <a href="{% url 'unmarktask' task.pk %}" class="btn btn-danger"><i class="fa fa-times"></i> Mark as UnDone</a>
                     </div>
+                    
                 </div>
                 {% endfor %}
             </div>
